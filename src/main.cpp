@@ -9,8 +9,9 @@ int main( int argc, char *argv[] )
 {
   QCoreApplication a( argc, argv );
 
-  QFile file( "/home/nyall/dev/genetic/colors.txt" );
-  file.open( QIODevice::ReadOnly );
+  QFile file( QStringLiteral( "/home/nyall/dev/slyr/data/colors.txt" ) );
+  qDebug() << file.open( QIODevice::ReadOnly );
+
   QTextStream in( &file );
   std::vector< ColorMap > map;
   int u = 0;
@@ -21,7 +22,7 @@ int main( int argc, char *argv[] )
     QStringList parts = line.split( ',' );
     if ( u % 100  == 0 )
       map.emplace_back( ColorMap( parts[3].toDouble(), parts[4].toDouble(), parts[5].toDouble(),
-                                  parts[0].toDouble(), parts[1].toDouble(), parts[2].toDouble() ) );
+                                  parts[0].toInt(), parts[1].toInt(), parts[2].toInt() ) );
   }
 
   qDebug() << map.size();
@@ -34,7 +35,7 @@ int main( int argc, char *argv[] )
   pop.sortByDelta();
   qDebug() << pop.individuals[0].delta;
   int i = 0;
-  while ( true )
+  while ( pop.individuals[0].delta > 0 )
   {
     pop.select();
     pop.calcDeltas( map );
