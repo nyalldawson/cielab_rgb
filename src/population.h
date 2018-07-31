@@ -45,7 +45,7 @@ class Population
 {
   public:
     Population( God &god, std::size_t count = 1000,
-                std::size_t bestSample = 300, std::size_t randomSample = 100 );
+                std::size_t bestSample = 50, std::size_t randomSample = 5 );
 
     void calcDeltas( const std::vector< ColorMap > &map );
 

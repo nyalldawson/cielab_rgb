@@ -40,10 +40,16 @@ int main( int argc, char *argv[] )
     pop.select();
     pop.calcDeltas( map );
     pop.sortByDelta();
-    qDebug() << "----";
-    qDebug() << pop.individuals[0].delta << " gen: " << i++;
-    pop.individuals[0].dump();
+    if ( i % 100 == 0 )
+    {
+      qDebug() << "----";
+      qDebug() << pop.individuals[0].delta << " gen: " << i;
+      pop.individuals[0].dump();
+    }
+    i++;
   }
+
+  pop.individuals[0].dump();
 
 #if 0
   int r, g, b;

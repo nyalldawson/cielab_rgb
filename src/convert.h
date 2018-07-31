@@ -44,6 +44,11 @@ class convert
 {
   public:
 
+    static void cieluvToXyz(
+      const Constants &constants,
+      double l, double u, double v, double &x, double &y, double &z );
+
+
     static void cielabToXyz(
       const Constants &constants,
       double l, double a, double b, double &x, double &y, double &z );
@@ -53,6 +58,9 @@ class convert
 
     static void cielabToRgb( const Constants &constants,
                              double l, double a, double b, int &r, int &g, int &bl );
+
+    static void cieluvToRgb( const Constants &constants,
+                             double l, double u, double v, int &r, int &g, int &bl );
 
     static unsigned long long delta( const Constants &constants,
                                      double l, double a, double b, int r, int g, int bl );
