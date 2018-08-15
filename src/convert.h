@@ -12,7 +12,7 @@ class Constants
 
     }
 
-    static constexpr int len = 25;
+    static constexpr int len = 31 + 9;
     static double defaults[];
     void dump();
 

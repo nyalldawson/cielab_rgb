@@ -80,7 +80,7 @@ double compand( const Constants &constants, double v )
   else
     return 1.16 * std::pow( v, 1 / 3.0 ) - 0.16;
 
-#elif 0
+#elif 1
   // gamma compand
   return std::pow( v, 1 / constants.constants[24] );
 #endif
@@ -96,9 +96,9 @@ double compand( const Constants &constants, double v )
 
 void convert::xyzToRgb( const Constants &constants, double x, double y, double z, int &r, int &g, int &b )
 {
-  r = std::round( 255 * compand( constants, constants.constants[9] * x + constants.constants[10] * y + constants.constants[11] * z ) );
-  g = std::round( 255 * compand( constants, constants.constants[12] * x + constants.constants[13] * y + constants.constants[14] * z ) );
-  b = std::round( 255 * compand( constants, constants.constants[15] * x + constants.constants[16] * y + constants.constants[17] * z ) );
+  r = std::round( constants.constants[26] + constants.constants[25] * compand( constants, constants.constants[9] * x + constants.constants[10] * y + constants.constants[11] * z ) );
+  g = std::round( constants.constants[28] + constants.constants[27] * compand( constants, constants.constants[12] * x + constants.constants[13] * y + constants.constants[14] * z ) );
+  b = std::round( constants.constants[30] + constants.constants[29] * compand( constants, constants.constants[15] * x + constants.constants[16] * y + constants.constants[17] * z ) );
 }
 
 void convert::cielabToRgb( const Constants &constants, double l, double a, double b, int &r, int &g, int &bl )
@@ -171,7 +171,23 @@ double Constants::defaults[] =
   0,
   0,
 
-  2.2// gamma
+  2.2,// gamma
+
+  255, //rgb scale
+  0, // rgb c
+  255, //rgb scale
+  0, // rgb c
+  255, //rgb scale
+  0, // rgb c
+  1, // rgb translation matrix
+  0,
+  0,
+  0, // g
+  1,
+  0,
+  0, // b
+  0,
+  1
 };
 
 void Constants::dump()

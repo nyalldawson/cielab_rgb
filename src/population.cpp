@@ -7,14 +7,14 @@ God::God()
   constantDist =
   {
     std::uniform_real_distribution<double>( 500, 500 ), // 500.0
-    std::uniform_real_distribution<double>( 0.008856, 0.008856 ), // 0.008856
-    std::uniform_real_distribution<double>( 903.3, 903.3 ), // 903.3
+    std::uniform_real_distribution<double>( 0.008856, 0.008856451679035631 ), //ϵ 0.008856
+    std::uniform_real_distribution<double>( 903.2962962962963, 903.3 ), // κ 903.3
     std::uniform_real_distribution<double>( 116, 116 ), // 116
     std::uniform_real_distribution<double>( 16, 16 ), // 16
     std::uniform_real_distribution<double>( 200, 200 ), // 200
-    std::uniform_real_distribution<double>( 0.7, 1.3 ), // 0.9504
-    std::uniform_real_distribution<double>( 0.8, 1.2 ), // 1
-    std::uniform_real_distribution<double>( 0.8, 1.2 ), // 1.0888
+    std::uniform_real_distribution<double>( 0.2, 1.3 ), // 0.9504 Xr
+    std::uniform_real_distribution<double>( 0.2, 1.2 ), // 1 Yr
+    std::uniform_real_distribution<double>( 0.2, 1.2 ), // 1.0888 Zr
 
     std::uniform_real_distribution<double>( -5, 5 ), // 3.240479
     std::uniform_real_distribution<double>( -5, 5 ), // -1.53715
@@ -36,7 +36,28 @@ God::God()
     std::uniform_real_distribution<double>( 0, 0 ), // 0
     std::uniform_real_distribution<double>( 0, 0 ), // 0
 
-    std::uniform_real_distribution<double>( 2.2, 2.2 ) // 2.2
+    std::uniform_real_distribution<double>( 1.0, 2.4 ), // 2.2
+
+    // rgb scaling
+    std::uniform_real_distribution<double>( 255, 255 ), // 255.0
+    std::uniform_real_distribution<double>( 0, 0 ), // 0
+    std::uniform_real_distribution<double>( 255, 255 ), // 255.0
+    std::uniform_real_distribution<double>( 0, 0 ), // 0
+    std::uniform_real_distribution<double>( 255, 255 ), // 255.0
+    std::uniform_real_distribution<double>( 0, 0 ), // 0
+
+    // rgb translation matrix
+    std::uniform_real_distribution<double>( -10, 10 ), // 1.0
+    std::uniform_real_distribution<double>( -10, 10 ), // 0.0
+    std::uniform_real_distribution<double>( -10, 10 ), // 0.0
+    std::uniform_real_distribution<double>( -10, 10 ), // 0.0
+    std::uniform_real_distribution<double>( -10, 10 ), // 1.0
+    std::uniform_real_distribution<double>( -10, 10 ), // 0.0
+    std::uniform_real_distribution<double>( -10, 10 ), // 0.0
+    std::uniform_real_distribution<double>( -10, 10 ), // 0.0
+    std::uniform_real_distribution<double>( -10, 10 ), // 1.0
+
+
 
   };
 }
@@ -134,7 +155,7 @@ void Population::select()
 
     for ( int j = 0; j < Constants::len; ++j )
     {
-      if ( mutateChanceDist( mt ) < 0.2 )
+      if ( mutateChanceDist( mt ) < 0.1 )
       {
         god.mutate( ind, j /*mutateGene( mt )*/ );
       }
