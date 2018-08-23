@@ -2,14 +2,18 @@
 #define CONVERT_H
 
 #include <vector>
-
+class QTextStream;
 class Constants
 {
   public:
 
     Constants()
     {
+      for ( int i = 0; i < len; ++i )
+      {
+        constants[i] = defaults[i];
 
+      }
     }
 
     static constexpr int len = 31 + 9;
@@ -67,6 +71,9 @@ class convert
 
     static unsigned long long  delta( const Constants &constants,
                                       const ColorMap &map );
+
+    static bool dumpDelta( const Constants &constants,
+                           const ColorMap &map, QTextStream &out );
 
     static unsigned long long  delta( const Constants &constants,
                                       const std::vector< ColorMap > &map );

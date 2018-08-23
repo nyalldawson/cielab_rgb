@@ -81,11 +81,20 @@ double compand( const Constants &constants, double v )
     return 1.16 * std::pow( v, 1 / 3.0 ) - 0.16;
 
 #elif 1
+
   // gamma compand
+  if ( v < 0 )
+    v = 0;
   return std::pow( v, 1 / constants.constants[24] );
 #endif
+// rec 709 compand
 
-#if 1
+  if ( v < 0.081 )
+    return v / 4.5;
+  else
+    return std::pow( ( v + 0.099 ) / 1.099, 1 / 0.45 );
+
+#if 0
 // srgb compand
   if ( v <= 0.0031308 )
     return 12.92 * v;
@@ -128,6 +137,34 @@ unsigned long long convert::delta( const Constants &constants, const ColorMap &m
   return delta( constants, map.l, map.a, map.b, map.r, map.g, map.bl );
 }
 
+inline double xround( double val )
+{
+  return std::round( val * 10000 ) / 10000;
+}
+
+bool convert::dumpDelta( const Constants &constants, const ColorMap &map, QTextStream &out )
+{
+  int rr, gg, bb;
+  cielabToRgb( constants, map.l, map.a, map.b, rr, gg, bb );
+  if ( std::abs( rr - map.r ) + std::abs( gg - map.g ) +  std::abs( bb - map.bl ) > 1 )
+  {
+    out << "(" << xround( map.l ) << "," << xround( map.a ) << "," << xround( map.b ) << "): " << "(" << map.r << "," << map.g << "," << map.bl << "),"; // << " -> (" << rr << "," << gg << "," << bb << ")";
+
+
+
+#if 0
+    if ( std::abs( rr - map.r ) > 2 )
+      qDebug() << "R:" << rr << '(' << map.r << ')';
+    if ( std::abs( gg - map.g ) > 2 )
+      qDebug() << "G:" << gg << '(' << map.g << ')';
+    if ( std::abs( bb - map.bl ) > 2 )
+      qDebug() << "B:" << bb << '(' << map.bl << ')';
+#endif
+    return false;
+  }
+  return true;
+}
+
 unsigned long long convert::delta( const Constants &constants, const std::vector<ColorMap> &map )
 {
   unsigned long long  d = 0;
@@ -146,22 +183,22 @@ double Constants::defaults[] =
   116.0, //[3]
   16.0, //[4]
   200.0,
-  0.9504, // Xr
+  0.9504559270516716,  //0.3127 * 1 / 0.329, // Xr    : 0.95047 OR 0.3127 * 1 / 0.329 = 0.9504559270516716(rec 709)
   1, // Yr
-  1.0888, // Zr
+  1.08883,   // Zr 1.08883 or
 
   // Transformation matrix M - see http://www.brucelindbloom.com/index.html?Eqn_Lab_to_XYZ.html
-  3.240479,
-  -1.53715,
-  -0.498535,
+  2.9515373,
+  - 1.2894116,
+  - 0.4738445,
 
-  -0.969256,
-  1.875991,
-  0.041556,
+  -1.0851093,
+  1.9908566,
+  0.0372026,
 
-  0.055648,
-  - 0.204043,
-  1.057311,
+  0.0854934,
+  - 0.2694964,
+  1.0912975,
 
   1,
   1,
@@ -171,7 +208,7 @@ double Constants::defaults[] =
   0,
   0,
 
-  2.2,// gamma
+  1.8,// gamma
 
   255, //rgb scale
   0, // rgb c

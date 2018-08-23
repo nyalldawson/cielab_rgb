@@ -7,36 +7,36 @@ God::God()
   constantDist =
   {
     std::uniform_real_distribution<double>( 500, 500 ), // 500.0
-    std::uniform_real_distribution<double>( 0.008856, 0.008856451679035631 ), //ϵ 0.008856
-    std::uniform_real_distribution<double>( 903.2962962962963, 903.3 ), // κ 903.3
+    std::uniform_real_distribution<double>( 0.008856 ), //ϵ 0.008856
+    std::uniform_real_distribution<double>( 903.3 ), // κ 903.3
     std::uniform_real_distribution<double>( 116, 116 ), // 116
     std::uniform_real_distribution<double>( 16, 16 ), // 16
     std::uniform_real_distribution<double>( 200, 200 ), // 200
-    std::uniform_real_distribution<double>( 0.2, 1.3 ), // 0.9504 Xr
-    std::uniform_real_distribution<double>( 0.2, 1.2 ), // 1 Yr
-    std::uniform_real_distribution<double>( 0.2, 1.2 ), // 1.0888 Zr
+    std::uniform_real_distribution<double>( 0.95047, 0.95047 ), // 0.9504 Xr
+    std::uniform_real_distribution<double>( 1, 1 ), // 1 Yr
+    std::uniform_real_distribution<double>( 1.08883, 1.08883 ), // 1.0888 Zr
 
-    std::uniform_real_distribution<double>( -5, 5 ), // 3.240479
-    std::uniform_real_distribution<double>( -5, 5 ), // -1.53715
-    std::uniform_real_distribution<double>( -5, 5 ), // -0.498535
+    std::uniform_real_distribution<double>( 2.9515373, 2.9515373 ), // 3.240479
+    std::uniform_real_distribution<double>( - 1.2894116, - 1.2894116 ),  // -1.53715
+    std::uniform_real_distribution<double>( - 0.4738445, - 0.4738445 ), // -0.498535
 
-    std::uniform_real_distribution<double>( -5, 5 ), // -0.969256
-    std::uniform_real_distribution<double>( -5, 5 ), // 1.875991
-    std::uniform_real_distribution<double>( -5, 5 ), // 0.041556
+    std::uniform_real_distribution<double>( -1.0851093, -1.0851093 ), // -0.969256
+    std::uniform_real_distribution<double>( 1.9908566, 1.9908566 ), // 1.875991
+    std::uniform_real_distribution<double>( 0.0372026, 0.0372026 ), // 0.041556
 
-    std::uniform_real_distribution<double>( -5, 5 ), // 0.055648
-    std::uniform_real_distribution<double>( -5, 5 ), // - 0.204043
-    std::uniform_real_distribution<double>( -5, 5 ), // 1.057311
+    std::uniform_real_distribution<double>( 0.0854934, 0.0854934 ), // 0.055648
+    std::uniform_real_distribution<double>( - 0.2694964, - 0.2694964 ), // - 0.204043
+    std::uniform_real_distribution<double>( 1.0912975, 1.0912975 ), // 1.057311
 
-    std::uniform_real_distribution<double>( 0.3, 1 ), // 1
-    std::uniform_real_distribution<double>( 1, 2 ), // 1
-    std::uniform_real_distribution<double>( 0.3, 1 ), // 1
+    std::uniform_real_distribution<double>( 1, 1 ), // 1
+    std::uniform_real_distribution<double>( 1, 1 ), // 1
+    std::uniform_real_distribution<double>( 1, 1 ), // 1
 
     std::uniform_real_distribution<double>( 0, 0 ), // 0
     std::uniform_real_distribution<double>( 0, 0 ), // 0
     std::uniform_real_distribution<double>( 0, 0 ), // 0
 
-    std::uniform_real_distribution<double>( 1.0, 2.4 ), // 2.2
+    std::uniform_real_distribution<double>( 1.8, 1.8 ), // 2.2
 
     // rgb scaling
     std::uniform_real_distribution<double>( 255, 255 ), // 255.0
@@ -47,15 +47,15 @@ God::God()
     std::uniform_real_distribution<double>( 0, 0 ), // 0
 
     // rgb translation matrix
-    std::uniform_real_distribution<double>( -10, 10 ), // 1.0
-    std::uniform_real_distribution<double>( -10, 10 ), // 0.0
-    std::uniform_real_distribution<double>( -10, 10 ), // 0.0
-    std::uniform_real_distribution<double>( -10, 10 ), // 0.0
-    std::uniform_real_distribution<double>( -10, 10 ), // 1.0
-    std::uniform_real_distribution<double>( -10, 10 ), // 0.0
-    std::uniform_real_distribution<double>( -10, 10 ), // 0.0
-    std::uniform_real_distribution<double>( -10, 10 ), // 0.0
-    std::uniform_real_distribution<double>( -10, 10 ), // 1.0
+    std::uniform_real_distribution<double>( 1, 1 ), // 1.0
+    std::uniform_real_distribution<double>( 0, 0 ), // 0.0
+    std::uniform_real_distribution<double>( 0, 0 ), // 0.0
+    std::uniform_real_distribution<double>( 0, 0 ), // 0.0
+    std::uniform_real_distribution<double>( 1, 1 ), // 1.0
+    std::uniform_real_distribution<double>( 0, 0 ), // 0.0
+    std::uniform_real_distribution<double>( 0, 0 ), // 0.0
+    std::uniform_real_distribution<double>( 0, 0 ), // 0.0
+    std::uniform_real_distribution<double>( 1, 1 ), // 1.0
 
 
 
